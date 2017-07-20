@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 
 User = get_user_model()
 
-class post(models.Model):
+class Post(models.Model):
     user = models.ForeignKey(User,related_name='posts')
     created_at = models.DateTimeField(auto_now=True)
     message = models.TextField()
