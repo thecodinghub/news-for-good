@@ -16,8 +16,10 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from . import views
+from news import views as post_view
 
 urlpatterns = [
+    url(r'^$',post_view.PostList.as_view(), name='all'),
     url(r'^admin/', admin.site.urls),
     url(r'^users/',include('users.urls',namespace='users')),
     url(r'^users/',include('django.contrib.auth.urls')),

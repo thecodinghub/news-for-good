@@ -1,0 +1,13 @@
+{% extends "my_app/base.html" %}
+
+{% block content %}
+  All posts
+
+  <ul class="list-unstyled">
+    {% for member_group in object_list %}
+      <li class="group li-with-bullet"><a href="{% url 'posts:single' username=member_group.user.username pk=member_group.pk%}"> {{ member_group.user }} || {{ member_group.message }} </a></li>
+    {% endfor %}
+
+  </ul>
+
+{% endblock content %}
