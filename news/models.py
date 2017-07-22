@@ -14,7 +14,7 @@ class Post(models.Model):
     message_html = models.TextField(editable=False)
 
     def __str__(self):
-        return self.name
+        return self.message
 
     def save(self,*args,**kwargs):
         self.message_html = misaka.html(self.message)
@@ -25,4 +25,3 @@ class Post(models.Model):
 
     class Meta():
         ordering = ['-created_at']
-        unique_together = ['user','message']

@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^users/',include('django.contrib.auth.urls')),
     url(r'^test/$',views.TestView.as_view(),name='test'),
     url(r'^thanks/$',views.ThanksView.as_view(),name='thanks'),
-    url(r'^posts/', include('news.urls',namespace='posts'))
+    url(r'^posts/', include('news.urls',namespace='news'))
 ]
