@@ -18,6 +18,27 @@
 
   </head>
   <body>
+
+    <nav class="navbar mynav " role="navigation" id="navbar">
+      <div class="container">
+        <a class="navbar-brand mynav" href="{% url 'home' %}">News For Good</a>
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'posts:create' %}">Post</a></li>
+          <li><a href="{% url 'groups:all' %}" >Groups</a></li>
+          <li><a href="{% url 'groups:create' %}">Create Group</a></li>
+          <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+          {% else %}
+          <li><a href="{% url 'groups:all' %}">Groups</a></li>
+          <li><a href="{% url 'accounts:login' %}">Login</a></li>
+          <li><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+
+
       <div class="container">
     {% block content %}{% endblock content %}
   </div>

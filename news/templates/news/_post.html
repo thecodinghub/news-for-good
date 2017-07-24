@@ -17,6 +17,15 @@
         <span class="text-danger icon-label">Delete</span></span></a>
       {% endif %}
 
+      {{ post.comments.count }} Comments
+
+      <ul>
+        {% for comm in post.comments.all %}
+          <li>{{ comm.comment }}</li>
+        {% endfor %}
+
+      </ul>
+
     </div>
   </div>
 </div>

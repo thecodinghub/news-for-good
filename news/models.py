@@ -25,3 +25,22 @@ class Post(models.Model):
 
     class Meta():
         ordering = ['-created_at']
+
+
+class Comment(models.Model):
+    post = models.ForeignKey('news.Post',related_name='comments')
+    aurthor = models.CharField(blank=False, max_length=100)
+    comment = models.TextField(blank=True)
+    created_date = models.DateTimeField(auto_now = True)
+    comment_html = models.TextField(editable = False)
+
+    def save(self,*args,**kwargs):
+        self.comment_html = misaka.html(self.comment)
+        super().save(*args,**kwargs)
+
+    def get_absolute_url(self):
+        #print(self.pk,self.post_id,self.post_user)
+        return reverse('news:all')
+
+    def __str__(self):
+        return self.comment
