@@ -68,3 +68,16 @@ class DeleteView(LoginRequiredMixin,generic.DeleteView):
     def delte(self,*args,**kwargs):
         message.success(self.request,'Post Deleted')
         return super().delete(*args,**kwargs)
+
+
+class CommentCreateView(generic.CreateView,LoginRequiredMixin):
+    model = models.Comment
+    fields = ('comment',)
+
+    login_url = "/users/login"
+
+    def form_valid(self,form):
+        self.object = form.save(commit = False)
+        self.object.user = self.request.user
+        self.object.save()
+        return super().form_valid(form)

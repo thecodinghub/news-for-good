@@ -25,3 +25,16 @@ class Post(models.Model):
 
     class Meta():
         ordering = ['-created_at']
+
+
+class Comment(models.Model):
+    post = models.ForeignKey('news.Post',related_name='comments')
+    aurthor = models.CharField(blank=False, max_length=100)
+    comment = models.TextField(blank=True)
+    created_date = models.DateTimeField(auto_now = True)
+
+    def get_absolute_url(self):
+        return reverse('news:single',kwargs={'username':self.user.username,'pk':self.pk})
+
+    def __str__(self):
+        return self.comment
