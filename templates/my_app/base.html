@@ -13,25 +13,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
-
   </head>
   <body>
 
     <nav class="navbar mynav " role="navigation" id="navbar">
       <div class="container">
-        <a class="navbar-brand mynav" href="{% url 'home' %}">News For Good</a>
+        <a class="navbar-brand mynav" href="{% url 'posts:all' %}">News For Good</a>
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_authenticated %}
           <li><a href="{% url 'posts:create' %}">Post</a></li>
-          <li><a href="{% url 'groups:all' %}" >Groups</a></li>
-          <li><a href="{% url 'groups:create' %}">Create Group</a></li>
-          <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+          <li><a href="/users/logout">Log Out</a></li>
           {% else %}
-          <li><a href="{% url 'groups:all' %}">Groups</a></li>
-          <li><a href="{% url 'accounts:login' %}">Login</a></li>
-          <li><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'users:login' %}">Login</a></li>
+          <li><a href="{% url 'users:signup' %}">Sign Up</a></li>
           {% endif %}
         </ul>
       </div>

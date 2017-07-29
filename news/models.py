@@ -32,7 +32,6 @@ class Comment(models.Model):
     aurthor = models.CharField(blank=False, max_length=100)
     comment = models.TextField(blank=True)
     created_date = models.DateTimeField(auto_now = True)
-<<<<<<< HEAD
     comment_html = models.TextField(editable = False)
 
     def save(self,*args,**kwargs):
@@ -42,11 +41,6 @@ class Comment(models.Model):
     def get_absolute_url(self):
         #print(self.pk,self.post_id,self.post_user)
         return reverse('news:all')
-=======
-
-    def get_absolute_url(self):
-        return reverse('news:single',kwargs={'username':self.user.username,'pk':self.pk})
->>>>>>> 78838ff702a08502c44595510d7e5ed6b39a2078
 
     def __str__(self):
         return self.comment
