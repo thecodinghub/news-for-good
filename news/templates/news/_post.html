@@ -16,16 +16,24 @@
         <span class="text-danger icon-label">Delete</span></span></a>
       {% endif %}
       <br>
-      {{ post.comments.count }} Comments
 
-      <ul>
-        {% for comm in post.comments.all %}
-          <li>"{{ comm.comment }}" - {{comm.aurthor}}</li>
-        {% endfor %}
+      <div class="comment_section">
+        <span class="comment_count">{{ post.comments.count }} Comments</span>
 
-      </ul>
 
-      <h4><a href="{% url 'posts:add_comment' pk=post.pk%}" class="text-primary">Comment On This Post</a></h4>
+        <div class="comment_list">
+          <ul>
+            {% for comm in post.comments.all %}
+              <li>"{{ comm.comment }}" - {{comm.aurthor}}</li>
+            {% endfor %}
+
+          </ul>
+        </div>
+
+
+        <h4 class="comment_btn"><a href="{% url 'posts:add_comment' pk=post.pk%}" class="text-primary btn btn-default">Comment On This Post</a></h4>
+
+      </div>
 
     </div>
   </div>

@@ -1,0 +1,21 @@
+body{
+  background-color: white;
+}
+
+/*Comment Section CSS*/
+
+.comment_section{
+  padding: 20px;
+  margin: 10px;
+  font-size: 25px;
+}
+
+.comment_section ul{
+  list-style-type: none;
+  font-size: 15px;
+  padding: 5px;
+}
+
+.comment_list{
+  margin: 10px;
+}

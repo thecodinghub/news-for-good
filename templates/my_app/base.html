@@ -12,6 +12,8 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="{% static 'my_app/css/base.css' %}">
+
     <title>News For Good</title>
   </head>
   <body>
@@ -19,9 +21,11 @@
     <nav class="navbar mynav " role="navigation" id="navbar">
       <div class="container">
         <a class="navbar-brand mynav" href="{% url 'all' %}">News For Good</a>
+
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_authenticated %}
           <li><a href="{% url 'posts:create' %}">Post</a></li>
+          <li><a href="{% url 'posts:for_user' username=user%}">{{user}}</a></li>
           <li><a href="/users/logout">Log Out</a></li>
           {% else %}
           <li><a href="{% url 'users:login' %}">Login</a></li>
