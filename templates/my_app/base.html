@@ -18,7 +18,15 @@
 
     <nav class="navbar mynav " role="navigation" id="navbar">
       <div class="container">
+<<<<<<< HEAD
         <a class="navbar-brand mynav" href="{% url 'all' %}">News For Good</a>
+=======
+<<<<<<< HEAD
+        <a class="navbar-brand mynav" href="{% url 'all' %}">News For Good</a>
+=======
+        <a class="navbar-brand mynav" href="{% url 'posts:all' %}">News For Good</a>
+>>>>>>> 954c774f85f8bd036b2bcc85ae7add08282d574d
+>>>>>>> a7b05eca42eeb41bb1d5f2804a9894276dbeb5ee
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_authenticated %}
           <li><a href="{% url 'posts:create' %}">Post</a></li>
