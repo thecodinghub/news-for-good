@@ -77,7 +77,7 @@ class CommentCreateView(LoginRequiredMixin,generic.CreateView):
     login_url = "/users/login"
 
     def form_valid(self,form,*args,**kwargs):
-        
+
         self.object = form.save(commit = False)
         self.object.aurthor = self.request.user.username
         self.object.post_id = self.kwargs['pk']
