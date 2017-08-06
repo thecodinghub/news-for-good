@@ -81,6 +81,5 @@ class CommentCreateView(LoginRequiredMixin,generic.CreateView):
         self.object = form.save(commit = False)
         self.object.aurthor = self.request.user.username
         self.object.post_id = self.kwargs['pk']
-        #print(self.request,self.kwargs['pk'])
         self.object.save()
         return super().form_valid(form)
