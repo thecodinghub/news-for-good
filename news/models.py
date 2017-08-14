@@ -12,6 +12,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     message = models.TextField()
     message_html = models.TextField(editable=False)
+    total_votes = models.IntegerField(editable=False,default = 0)
 
     def __str__(self):
         return self.message
@@ -21,7 +22,11 @@ class Post(models.Model):
         super().save(*args,**kwargs)
 
     def get_absolute_url(self):
-        return reverse('news:single',kwargs={'username':self.user.username,'pk':self.pk})
+        return reverse('news:single',kwargs={'username':self.user.username,
+        'pk':self.pk})
+
+    def upvote(self):
+        self.total_votes = self.total_votes+1
 
     class Meta():
         ordering = ['-created_at']

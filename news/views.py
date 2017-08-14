@@ -6,8 +6,6 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import Http404
 from django.views import generic
 
-from . import models
-
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -42,7 +40,9 @@ class Postdetail(generic.DetailView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(user__username__iexact = self.kwargs.get('username'))
+        return queryset.filter(user__username__iexact = self.kwargs.get(
+        'username'
+        ))
 
 class  CreatePost(LoginRequiredMixin,generic.CreateView):
 
@@ -83,3 +83,6 @@ class CommentCreateView(LoginRequiredMixin,generic.CreateView):
         self.object.post_id = self.kwargs['pk']
         self.object.save()
         return super().form_valid(form)
+# 
+# def upvote():
+#
