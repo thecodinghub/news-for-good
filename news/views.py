@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
 
+from django.shortcuts import render,get_object_or_404,redirect
 from django.http import Http404
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -83,6 +85,15 @@ class CommentCreateView(LoginRequiredMixin,generic.CreateView):
         self.object.post_id = self.kwargs['pk']
         self.object.save()
         return super().form_valid(form)
-# 
-# def upvote():
-#
+
+@login_required
+def upvote(request,pk):
+    post = get_object_or_404(models.Post,pk=pk)
+    post.upvote()
+    return redirect('posts:single',username=post.user,pk=pk)
+
+@login_required
+def downvote(request,pk):
+    post = get_object_or_404(models.Post,pk=pk)
+    post.downvote()
+    return redirect('posts:single',username=post.user,pk=pk)

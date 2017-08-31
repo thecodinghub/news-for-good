@@ -27,6 +27,11 @@ class Post(models.Model):
 
     def upvote(self):
         self.total_votes = self.total_votes+1
+        self.save()
+
+    def downvote(self):
+        self.total_votes = self.total_votes-1
+        self.save()
 
     class Meta():
         ordering = ['-created_at']

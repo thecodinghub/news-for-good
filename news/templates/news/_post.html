@@ -16,6 +16,15 @@
         <span class="text-danger icon-label">Delete</span></span></a>
       {% endif %}
       <br>
+      <div class="upvote-btn btn-default btn">
+        <a href="{% url 'posts:upvote' pk=post.pk %}">Upvote</a>
+      </div>
+
+      <div class="upvote-btn btn-default btn">
+        <a href="{% url 'posts:downvote' pk=post.pk %}">Downvote</a>
+      </div>
+
+      <h3>{{ post.total_votes }}</h3>
 
       <div class="comment_section">
         <span class="comment_count">{{ post.comments.count }} Comments</span>
