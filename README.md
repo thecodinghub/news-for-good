@@ -1,6 +1,6 @@
 # News-for-good
 ---
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()   [![GitHub commits](https://img.shields.io/github/commits-since/SubtitleEdit/subtitleedit/3.4.7.svg)]()   [![GitHub issues](https://img.shields.io/github/issues/badges/shields.svg)]()
+[![license](https://img.shields.io/badge/licence-BSD--3--Clause-brightgreen.svg)]()
 
 This Is an Open Source news sharing application in Django.
 Users can share ,comment and vote for news.
