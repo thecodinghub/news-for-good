@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from django.conf import settings
 from . import views
 from news import views as post_view
 
@@ -27,3 +28,10 @@ urlpatterns = [
     url(r'^thanks/$',views.ThanksView.as_view(),name='thanks'),
     url(r'^posts/', include('news.urls',namespace='news'))
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns  = [
+        url('^__debug__/', include(debug_toolbar.urls))
+    ] + urlpatterns
+
