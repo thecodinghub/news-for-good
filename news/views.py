@@ -1,9 +1,13 @@
-from django.shortcuts import render
+# from django.shortcuts import render
+
+
+from . import models
+# from . import forms
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
 
-from django.shortcuts import render,get_object_or_404,redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.http import Http404
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -11,12 +15,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-from . import models
-from . import forms
 # Create your views here.
+
 
 class PostList(generic.ListView):
     model = models.Post
+
 
 class UserPost(generic.ListView):
     model = models.Post
@@ -37,6 +41,7 @@ class UserPost(generic.ListView):
         context['post_user'] = self.post_user
         return context
 
+
 class Postdetail(generic.DetailView):
     model=models.Post
 
@@ -46,18 +51,20 @@ class Postdetail(generic.DetailView):
         'username'
         ))
 
-class  CreatePost(LoginRequiredMixin,generic.CreateView):
+
+class CreatePost(LoginRequiredMixin,generic.CreateView):
 
     fields = ('message',)
     model = models.Post
 
     login_url = "/users/login"
 
-    def form_valid(self,form):
+    def form_valid(self, form):
         self.object = form.save(commit = False)
         self.object.user = self.request.user
         self.object.save()
         return super().form_valid(form)
+
 
 class DeleteView(LoginRequiredMixin,generic.DeleteView):
     model = models.Post
@@ -65,35 +72,37 @@ class DeleteView(LoginRequiredMixin,generic.DeleteView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(user_id = self.request.user.id)
+        return queryset.filter(user_id=self.request.user.id)
 
-    def delte(self,*args,**kwargs):
-        message.success(self.request,'Post Deleted')
-        return super().delete(*args,**kwargs)
+    def delte(self, *args, **kwargs):
+        message.success(self.request, 'Post Deleted')
+        return super().delete(*args, **kwargs)
 
 
-class CommentCreateView(LoginRequiredMixin,generic.CreateView):
+class CommentCreateView(LoginRequiredMixin, generic.CreateView):
     model = models.Comment
     fields = ('comment',)
 
     login_url = "/users/login"
 
-    def form_valid(self,form,*args,**kwargs):
+    def form_valid(self, form, *args, **kwargs):
 
-        self.object = form.save(commit = False)
+        self.object = form.save(commit=False)
         self.object.aurthor = self.request.user.username
         self.object.post_id = self.kwargs['pk']
         self.object.save()
         return super().form_valid(form)
 
-@login_required
-def upvote(request,pk):
-    post = get_object_or_404(models.Post,pk=pk)
-    post.upvote()
-    return redirect('posts:single',username=post.user,pk=pk)
 
 @login_required
-def downvote(request,pk):
-    post = get_object_or_404(models.Post,pk=pk)
+def upvote(request, pk):
+    post = get_object_or_404(models.Post, pk=pk)
+    post.upvote()
+    return redirect('posts:single', username=post.user, pk=pk)
+
+
+@login_required
+def downvote(request, pk):
+    post = get_object_or_404(models.Post, pk=pk)
     post.downvote()
-    return redirect('posts:single',username=post.user,pk=pk)
+    return redirect('posts:single', username=post.user, pk=pk)

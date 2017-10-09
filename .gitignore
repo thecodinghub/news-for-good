@@ -100,3 +100,8 @@ news-env/
 
 # mypy
 .mypy_cache/
+
+# PyCharm
+.idea
+.idea/
+*.xml
