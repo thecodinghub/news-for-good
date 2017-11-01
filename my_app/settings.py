@@ -129,6 +129,7 @@ STATICFILES_DIRS = [
     STATIC_DIR
 ]
 
+LOGIN_URL = '/users/login'
 LOGIN_REDIRECT_URL = 'test'
 LOGOUT_REDIRECT_URL = 'thanks'
 

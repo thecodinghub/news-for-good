@@ -46,7 +46,7 @@ class Postdetail(generic.DetailView):
         'username'
         ))
 
-class  CreatePost(LoginRequiredMixin,generic.CreateView):
+class CreatePost(LoginRequiredMixin,generic.CreateView):
 
     fields = ('message',)
     model = models.Post
@@ -89,11 +89,13 @@ class CommentCreateView(LoginRequiredMixin,generic.CreateView):
 @login_required
 def upvote(request,pk):
     post = get_object_or_404(models.Post,pk=pk)
-    post.upvote()
+    user = request.user
+    post.upvote(user)
     return redirect('posts:single',username=post.user,pk=pk)
 
 @login_required
 def downvote(request,pk):
     post = get_object_or_404(models.Post,pk=pk)
-    post.downvote()
+    user = request.user
+    post.downvote(user)
     return redirect('posts:single',username=post.user,pk=pk)

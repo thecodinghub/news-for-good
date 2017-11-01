@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.pyc
 *$py.class
 
 # C extensions
@@ -54,6 +55,8 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
+db.sqlite*
+
 
 # Flask stuff:
 instance/
