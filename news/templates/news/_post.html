@@ -17,14 +17,14 @@
       {% endif %}
       <br>
       <div class="upvote-btn btn-default btn">
-        <a href="{% url 'posts:upvote' pk=post.pk %}">Upvote</a>
+        <a href="{% url 'posts:upvote' pk=post.pk %}">Upvote<br>{{ post.up_votes }}</a>
       </div>
 
       <div class="upvote-btn btn-default btn">
-        <a href="{% url 'posts:downvote' pk=post.pk %}">Downvote</a>
+        <a href="{% url 'posts:downvote' pk=post.pk %}">Downvote<br>{{ post.down_votes }}</a>
       </div>
 
-      <h3>{{ post.total_votes }}</h3>
+      <h3>Total Votes: {{ post.total_votes }}</h3>
 
       <div class="comment_section">
         <span class="comment_count">{{ post.comments.count }} Comments</span>
