@@ -5,7 +5,7 @@
 
   <ul class="list-unstyled">
     {% for member_group in object_list %}
-      <li class="group li-with-bullet"><a href="{% url 'posts:single' username=member_group.user.username pk=member_group.pk%}"> {{ member_group.user }} || {{ member_group.message }} </a></li>
+      <li class="group li-with-bullet"><a href="{% url 'posts:single' username=member_group.user.username pk=member_group.pk%}"><b>{{ member_group.heading }}</b><br> {{ member_group.user }} || {{ member_group.message }} </a></li>
     {% endfor %}
 
   </ul>

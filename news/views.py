@@ -48,7 +48,7 @@ class Postdetail(generic.DetailView):
 
 class CreatePost(LoginRequiredMixin,generic.CreateView):
 
-    fields = ('message',)
+    fields = ('heading','message')
     model = models.Post
 
     login_url = "/users/login"

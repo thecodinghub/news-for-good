@@ -12,6 +12,7 @@ VOTE_TYPE = (("U", "Up"),("D", "Down"))
 class Post(models.Model):
     user = models.ForeignKey(User,related_name='posts')
     created_at = models.DateTimeField(auto_now=True)
+    heading = models.TextField()
     message = models.TextField()
     message_html = models.TextField(editable=False)
     total_votes = models.IntegerField(editable=False, default = 0)
