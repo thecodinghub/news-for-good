@@ -105,6 +105,10 @@ venv/
 ENV/
 news-env/
 
+#Media Files
+media/
+
+
 # Spyder project settings
 .spyderproject
 .spyproject
