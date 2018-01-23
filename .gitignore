@@ -71,6 +71,8 @@ tests/.coverage
 build/
 tests/report/
 migrations/
+db.sqlite*
+
 
 # Flask stuff:
 instance/
