@@ -5,7 +5,35 @@
 
   <ul class="list-unstyled">
     {% for member_group in object_list %}
-      <li class="group li-with-bullet"><a href="{% url 'posts:single' username=member_group.user.username pk=member_group.pk%}"><b>{{ member_group.heading }}</b><br> {{ member_group.user }} || {{ member_group.message }} </a></li>
+
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+		<div class="card">
+			{% if member_group.image %}
+			<img class="card-img-top" src="media/{{ member_group.image }} ">
+			{% else %}
+			<img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+			{% endif %}
+				<div class="card-block">
+					<figure class="profile">
+						<img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+						</figure>
+						<h4 class="card-title mt-3">{{ member_group.heading }}</h4>
+						<div class="meta">
+							<a href="{% url 'posts:for_user' username=member_group.user.username %}">@{{ member_group.user.username }}</a>
+						</div>
+						<div class="card-text">
+                {{ member_group.message }}
+            </div>
+					</div>
+					<div class="card-footer">
+						<small>{{ member_group.created_at }}</small>
+						<a href="{% url 'posts:single' username=member_group.user.username pk=member_group.pk%}">
+							<button class="btn btn-read btn-primary float-right btn-sm">Read</button>
+						</a>
+					</div>
+				</div>
+			</div>
+  <!--     <li class="group li-with-bullet"><a href="{% url 'posts:single' username=member_group.user.username pk=member_group.pk%}"><b>{{ member_group.heading }}</b><br> {{ member_group.user }} || {{ member_group.message }} </a></li> -->
     {% endfor %}
 
   </ul>
