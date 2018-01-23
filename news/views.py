@@ -48,7 +48,7 @@ class Postdetail(generic.DetailView):
 
 class CreatePost(LoginRequiredMixin,generic.CreateView):
 
-    fields = ('message',)
+    fields = ('heading','message','image')
     model = models.Post
 
     login_url = "/users/login"
@@ -88,6 +88,7 @@ class CommentCreateView(LoginRequiredMixin,generic.CreateView):
 
 @login_required
 def upvote(request,pk):
+    login_url = 'users/login'
     post = get_object_or_404(models.Post,pk=pk)
     user = request.user
     post.upvote(user)

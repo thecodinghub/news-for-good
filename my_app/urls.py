@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from django.conf import settings
+from django.conf.urls.static import static
+from django.views.static import serve
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import views
 from news import views as post_view
 
@@ -32,6 +35,10 @@ urlpatterns = [
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns  = [
-        url('^__debug__/', include(debug_toolbar.urls))
+        url('^__debug__/', include(debug_toolbar.urls)),
+        # staticfiles_urlpatterns(),
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
     ] + urlpatterns
 
