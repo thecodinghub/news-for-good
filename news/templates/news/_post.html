@@ -1,6 +1,6 @@
-<div class="post media">
-  <h1><b>{{ post.heading }}</b></h1>
-  <h3>{{ post.message_html|safe }}</h3>
+<!-- <div class="post media">
+  <h1 id="heading"><b>{{ post.heading }}</b></h1>
+  <p>{{ post.message_html|safe }}</p>
 
   <div class="media-body">
     <h5 class="media-heading">
@@ -47,4 +47,67 @@
 
     </div>
   </div>
+</div>
+ -->
+
+<div class="container">
+
+  <div class="container-fluid">
+    <div class="news-header text-center">
+      <h1>{{ post.heading }}</h1>
+      <p>{{ post.created_at }} By <a href="{% url 'posts:for_user' username=post.user.username %}">@{{ post.user.username }}</a></p>
+<!--    Delete Button for owner    -->
+      <a class="btn btn-danger" href="{% url 'posts:delete' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span>&nbsp;Delete</a>
+    </div>
+    <hr>
+    <div class="news-img">
+      <img src="/media/{{ post.image }}" class="img-responsive">
+    </div>
+    
+    <div class="msg-area row">
+<!--Left side       -->
+      <div class="col-xs-4">
+        <a href="{% url 'posts:upvote' pk=post.pk %}" class="btn btn-info btn-lg vote">
+          <span class="glyphicon glyphicon-chevron-up"></span> Up <span class="badge">{{ post.up_votes }}</span>
+        </a><br>
+        <a href="{% url 'posts:downvote' pk=post.pk %}" class="btn btn-info btn-lg vote">
+          <span class="glyphicon glyphicon-chevron-down"></span> Down<span class="badge">{{ post.down_votes }}</span>
+        </a>
+      </div>
+      
+<!--Right Side        -->
+      <div class="col-xs-8">
+        <div class="msg">
+          {{ post.message_html|safe }}
+        </div>
+      </div>
+          
+    </div>
+    
+    <div class="comment-area row text-center">
+      <div class="col-xs-4">
+        <span class="glyphicon glyphicon-comment"></span>&nbsp;<span class="badge">{{ post.comments.count }}</span>
+      </div>
+      <div class="col-xs-4">
+        <a href="{% url 'posts:add_comment' pk=post.pk%}">Write a comment <span class="glyphicon glyphicon-pencil"></span></a>
+      </div>
+      <div class="col-xs-4">
+        <span class="glyphicon glyphicon-share"></span>
+      </div>
+    </div>
+    
+    {% if post.comment.count > 0 %}
+    <div class="comment-list">
+      <div class="comment">
+        {% for comm in post.comments.all %}
+          <h4><b>{{comm.aurthor}}</b></h4>
+          <h5>"{{ comm.comment }}"<h5>
+        {% endfor %}
+    {% endif %}
+    
+      </div>
+    </div>
+    
+  </div>
+  
 </div>

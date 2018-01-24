@@ -8,11 +8,13 @@
 
     <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 		<div class="card">
+			<a href="{% url 'posts:single' username=member_group.user.username pk=member_group.pk%}">
 			{% if member_group.image %}
 			<img class="card-img-top" src="media/{{ member_group.image }} ">
 			{% else %}
 			<img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
 			{% endif %}
+			</a>
 				<div class="card-block">
 					<figure class="profile">
 						<img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
@@ -22,7 +24,7 @@
 							<a href="{% url 'posts:for_user' username=member_group.user.username %}">@{{ member_group.user.username }}</a>
 						</div>
 						<div class="card-text">
-                {{ member_group.message }}
+                {{ member_group.message|truncatewords:10 }}
             </div>
 					</div>
 					<div class="card-footer">
