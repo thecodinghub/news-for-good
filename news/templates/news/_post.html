@@ -54,10 +54,14 @@
 
   <div class="container-fluid">
     <div class="news-header text-center">
-      <h1>{{ post.heading }}</h1>
+      <span class="heading-line"><h1><b>{{ post.heading }}</b></h1></span>
       <p>{{ post.created_at }} By <a href="{% url 'posts:for_user' username=post.user.username %}">@{{ post.user.username }}</a></p>
+
 <!--    Delete Button for owner    -->
-      <a class="btn btn-danger" href="{% url 'posts:delete' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span>&nbsp;Delete</a>
+{% if user.is_authenticated and post.user == user %}
+      <a class="btn btn-danger" href="{% url 'posts:delete' pk=post.pk %}"  title="delete"><span class="glyphicon glyphicon-remove"></span>&nbsp;Delete</a>
+
+{% endif %}
     </div>
     <hr>
     <div class="news-img">
@@ -96,11 +100,11 @@
       </div>
     </div>
     
-    {% if post.comment.count > 0 %}
+    {% if post.comments.count > 0 %}
     <div class="comment-list">
       <div class="comment">
         {% for comm in post.comments.all %}
-          <h4><b>{{comm.aurthor}}</b></h4>
+          <h3><b>{{comm.aurthor}} -</b></h3>
           <h5>"{{ comm.comment }}"<h5>
         {% endfor %}
     {% endif %}
