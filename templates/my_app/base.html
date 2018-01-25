@@ -15,23 +15,6 @@
     <title>News For Good</title>
   </head>
   <body>
-
-<!--     <nav class="navbar mynav " role="navigation" id="navbar">
-      <div class="container">
-        <a class="navbar-brand mynav" href="{% url 'all' %}">News For Good</a>
-
-        <ul class="nav navbar-nav navbar-right">
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'posts:create' %}">Post</a></li>
-          <li><a href="{% url 'posts:for_user' username=user%}">{{user}}</a></li>
-          <li><a href="/users/logout">Log Out</a></li>
-          {% else %}
-          <li><a href="{% url 'users:login' %}">Login</a></li>
-          <li><a href="{% url 'users:signup' %}">Sign Up</a></li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav> -->
     {% include "my_app/_nav.html" %}
 
 
