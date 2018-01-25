@@ -1,0 +1,40 @@
+   <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="small-logo-container">
+            <a class="small-logo" href="#">News-For-Good</a>
+          </div>
+        </div>
+        <div class="navbar-collapse collapse">
+          
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li class="active"><a href="#">Active</a></li> -->
+            {% if user.is_authenticated %}
+            <li {% if request.resolver_match.url_name == 'create' %}class="active"{% endif %}><a href="{% url 'posts:create' %}">Post</a></li>
+            <li {% if request.resolver_match.url_name == 'for_user' %}class="active"{% endif %}><a href="{% url 'posts:for_user' username=user%}">{{user}}</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'users:login' %}">Login</a></li>
+            <li><a href="{% url 'users:signup' %}">Sign Up</a></li>
+            {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container-fluid big-logo-row">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 big-logo-container">
+            <a href="{% url 'all' %}"><h1 class="big-logo">News-For-Good</h1></a>
+          </div><!--/.col-xs-12 -->
+        </div><!--/.row -->
+      </div><!--/.container -->
+    </div><!--/.container-fluid -->
